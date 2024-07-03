@@ -1,0 +1,195 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example</groupId>
+  <artifactId>Discogs</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Discogs</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>19</maven.compiler.source>
+    <maven.compiler.target>19</maven.compiler.target>
+
+    <selenium.version>4.20.0</selenium.version>
+    <webdrivermanager.version>5.8.0</webdrivermanager.version>
+    <webdriverfactory.version>4.4</webdriverfactory.version>
+    <testNG.version>7.0.0</testNG.version>
+    <awaitility.version>1.7.0</awaitility.version>
+    <hamcrest.version>2.2</hamcrest.version>
+    <assertj.version>3.15.0</assertj.version>
+    <awaitility.version>1.7.0</awaitility.version>
+
+    <chrome-driver.version>latest-1</chrome-driver.version>
+    <edge-driver.version>80.0.361.66</edge-driver.version>
+    <ie-driver.version>3.141.5</ie-driver.version>
+    <firefox-driver.version>0.26.0</firefox-driver.version>
+
+
+    <!--<selenium.version>3.141.59</selenium.version>
+    <webdrivermanager.version>3.8.1</webdrivermanager.version>
+    <webdriverfactory.version>4.4</webdriverfactory.version>-->
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <version>${hamcrest.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <version>${awaitility.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <version>${awaitility.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testNG.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>${webdrivermanager.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ru.stqa.selenium</groupId>
+      <artifactId>webdriver-factory</artifactId>
+      <version>${webdriverfactory.version}</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <mainClass>com.discogs.automation.App</mainClass>
+          <arguments>
+            <argument>First</argument>
+            <argument>Second</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+    </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+  </build>
+
+  <profiles>
+    <!-- browsers -->
+    <profile>
+      <id>firefox</id>
+      <properties>
+        <capabilities>/capabilities/firefox.capabilities</capabilities>
+        <device.name/>
+        <device.width/>
+        <device.height/>
+        <pixel.ratio/>
+        <user.agent/>
+      </properties>
+    </profile>
+    <profile>
+      <id>chrome</id>
+      <properties>
+        <capabilities>/capabilities/chrome.capabilities</capabilities>
+        <device.name/>
+        <device.width/>
+        <device.height/>
+        <pixel.ratio/>
+        <user.agent/>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>ie</id>
+      <properties>
+        <capabilities>/capabilities/ie.capabilities</capabilities>
+        <device.name/>
+        <device.width/>
+        <device.height/>
+        <pixel.ratio/>
+        <user.agent/>
+      </properties>
+    </profile>
+    <profile>
+      <id>safari</id>
+      <properties>
+        <capabilities>/capabilities/safari.capabilities</capabilities>
+        <device.name/>
+        <device.width/>
+        <device.height/>
+        <pixel.ratio/>
+        <user.agent/>
+      </properties>
+    </profile>
+    <profile>
+      <id>edge</id>
+      <properties>
+        <capabilities>/capabilities/edge.capabilities</capabilities>
+        <device.name/>
+        <device.width/>
+        <device.height/>
+        <pixel.ratio/>
+        <user.agent/>
+      </properties>
+    </profile>
+
+    <!-- ENVIRONMENTS -->
+
+    <profile>
+      <id>localhost</id>
+      <properties>
+        <site.url>https://www.discogs.com/</site.url>
+        <grid.url>http://127.0.0.1:4444/wd/hub</grid.url>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+  </profiles>
+</project>
+
+
+
+
+
+
+
+
+
